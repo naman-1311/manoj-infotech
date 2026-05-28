@@ -124,10 +124,29 @@ export default function HeroText() {
         {/* Content — bottom-left */}
         <div style={{ position: 'relative', zIndex: 3, maxWidth: 640 }}>
 
-          {/* Label chip */}
-          <div style={{ overflow: 'hidden', marginBottom: 20 }}>
+          {/* Primary headline */}
+          <div style={{ overflow: 'hidden' }}>
             <div
               ref={line1Ref}
+              style={{
+                fontFamily: 'var(--font-heading)',
+                fontSize: 'clamp(42px, 6vw, 86px)',
+                fontWeight: 800,
+                color: '#ffffff',
+                lineHeight: 1.0,
+                letterSpacing: '-0.03em',
+                paddingBottom: '0.2rem',
+              }}
+            >
+              Manoj<br />
+              <span style={{ color: '#EF4444' }}>Infotec</span>
+            </div>
+          </div>
+
+          {/* Label chip — below headline */}
+          <div style={{ overflow: 'hidden', marginTop: 16 }}>
+            <div
+              ref={line2Ref}
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
@@ -146,25 +165,6 @@ export default function HeroText() {
             >
               <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#EF4444', display: 'inline-block' }} />
               House of Computers
-            </div>
-          </div>
-
-          {/* Primary headline */}
-          <div style={{ overflow: 'hidden' }}>
-            <div
-              ref={line2Ref}
-              style={{
-                fontFamily: 'var(--font-heading)',
-                fontSize: 'clamp(42px, 6vw, 86px)',
-                fontWeight: 800,
-                color: '#ffffff',
-                lineHeight: 1.0,
-                letterSpacing: '-0.03em',
-                paddingBottom: '0.2rem',
-              }}
-            >
-              Manoj<br />
-              <span style={{ color: '#EF4444' }}>Infotec</span>
             </div>
           </div>
 

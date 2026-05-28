@@ -306,11 +306,15 @@ h2 {
 .hero-mobile-hamburger { display: none; }
 .hero-mobile-bg { display: none; }
 .hero-nav-logo { height: 52px; }
+.hero-nav-mobile-brand { display: none !important; }
+.hero-nav-desktop-brand { display: flex; }
 
 @media (max-width: 1024px) {
   .hero-sidebar-strip { display: none !important; width: 0 !important; border: none !important; overflow: hidden !important; }
   .hero-top-nav { left: 0 !important; }
   .hero-mobile-hamburger { display: flex !important; align-items: center; }
+  .hero-nav-desktop-brand { display: none !important; }
+  .hero-nav-mobile-brand { display: inline !important; pointer-events: none; }
 }
 
 @media (max-width: 767px) {

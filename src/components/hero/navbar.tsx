@@ -160,35 +160,24 @@ export default function Navbar({
           </button>
         )}
 
-        {/* Center greeting text */}
-        <span style={{ flex: 1, minWidth: 0, overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        {/* Center greeting text — desktop */}
+        <span className="hero-nav-desktop-brand" style={{ flex: 1, minWidth: 0, overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           {!isOpen && (
-            <span
-              className="hero-nav-greeting"
-              style={{
-                fontSize: 13,
-                fontWeight: 700,
-                letterSpacing: '0.12em',
-                textTransform: 'uppercase',
-                fontFamily: 'var(--font-label)',
-                transition: colorTransition,
-                whiteSpace: 'nowrap',
-                textOverflow: 'ellipsis',
-                overflow: 'hidden',
-                maxWidth: '100%',
-                color: '#ffffff',
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: 10,
-              }}
-            >
-              <span style={{ color: '#EF4444', fontSize: 7, verticalAlign: 'middle', display: 'inline-block', width: 7, height: 7, borderRadius: '50%', background: '#EF4444', flexShrink: 0 }} />
+            <span style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', fontFamily: 'var(--font-label)', color: '#ffffff', display: 'inline-flex', alignItems: 'center', gap: 10, whiteSpace: 'nowrap' }}>
+              <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#EF4444', flexShrink: 0 }} />
               Manoj Infotec
-              <span style={{ color: 'rgba(255,255,255,0.3)', fontWeight: 400, fontSize: 11, letterSpacing: '0.2em' }}>-</span>
+              <span style={{ color: 'rgba(255,255,255,0.3)', fontWeight: 400, fontSize: 11, letterSpacing: '0.2em' }}>·</span>
               <span style={{ color: 'rgba(255,255,255,0.5)', fontWeight: 400, fontSize: 11, letterSpacing: '0.18em' }}>House Of Computers</span>
             </span>
           )}
         </span>
+
+        {/* Mobile brand name — centered in flex flow */}
+        {!isOpen && (
+          <span className="hero-nav-mobile-brand" style={{ flex: 1, textAlign: 'center', fontSize: 11, fontWeight: 600, letterSpacing: '0.2em', textTransform: 'uppercase', fontFamily: 'var(--font-label)', color: 'rgba(255,255,255,0.7)', whiteSpace: 'nowrap' }}>
+            Manoj Infotec
+          </span>
+        )}
 
         {/* Close hint when menu open */}
         {isOpen && (

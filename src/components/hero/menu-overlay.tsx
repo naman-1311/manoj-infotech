@@ -432,7 +432,7 @@ export default function MenuOverlay({ isOpen, onClose, navLinks = DEFAULT_NAV_LI
                 onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.opacity = '1'; }}
               >
                 {link.label}
-                <span style={{ fontFamily: 'var(--font-label)', fontSize: '0.55rem', textTransform: 'uppercase', letterSpacing: '0.12em', color: 'rgba(255,255,255,0.35)', marginLeft: '0.5rem' }}>↗</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.35)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginLeft: '0.5rem', flexShrink: 0 }}><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
               </a>
             </div>
           ))}

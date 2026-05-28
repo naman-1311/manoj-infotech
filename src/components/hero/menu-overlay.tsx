@@ -169,11 +169,6 @@ function ServiceCard({
         }}
       />
 
-      {/* Dot grid top-right */}
-      <div style={{ position: 'absolute', top: '1.25rem', right: '1.25rem', opacity: 0.85, zIndex: 1, pointerEvents: 'none' }}>
-        <DotGrid width={80} height={72} step={9} dotR={2} />
-      </div>
-
       {/* Label bottom-left */}
       {/* Full-card link — covers entire card for click */}
       <a
@@ -397,11 +392,6 @@ export default function MenuOverlay({ isOpen, onClose, navLinks = DEFAULT_NAV_LI
           cursor: 'default',
         }}
       >
-        {/* Dot grid top-right */}
-        <div style={{ position: 'absolute', top: '1.5rem', right: '1.5rem', opacity: 0.9 }}>
-          <DotGrid width={100} height={88} step={10} dotR={2.5} />
-        </div>
-
         {/* Logo at top of menu card */}
         <div style={{ position: 'relative', zIndex: 1 }}>
           <img

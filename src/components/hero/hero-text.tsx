@@ -12,14 +12,17 @@ export default function HeroText() {
 
   useEffect(() => {
     const video = videoRef.current;
-    if (video) {
-      video.muted = true;
-      video.play().catch(() => {
-        // fallback: try again on first user interaction
-        const resume = () => { video.play().catch(() => {}); document.removeEventListener('touchstart', resume); };
-        document.addEventListener('touchstart', resume, { once: true });
-      });
-    }
+    if (!video) return;
+
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+    const src = isMobile ? '/Mobile-Vid.mp4' : '/Video-Project.mp4';
+    video.src = src;
+    video.muted = true;
+    video.load();
+    video.play().catch(() => {
+      const resume = () => { video.play().catch(() => {}); document.removeEventListener('touchstart', resume); };
+      document.addEventListener('touchstart', resume, { once: true });
+    });
   }, []);
 
   useEffect(() => {
@@ -73,9 +76,8 @@ export default function HeroText() {
             zIndex: 0,
             transform: 'translate(-50%, -50%)',
           }}
-        >
-          <source src="/Video-Project.mp4" type="video/mp4" />
-        </video>
+        />
+
 
         {/* Mobile fallback — shown when video is hidden on mobile */}
         <div

@@ -40,7 +40,7 @@ export default function PhilosophySection() {
           className={`transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
           style={{
             fontFamily: 'var(--font-label)',
-            fontSize: '0.7rem',
+            fontSize: '0.85rem',
             letterSpacing: '0.22em',
             textTransform: 'uppercase',
             color: '#DC2626',

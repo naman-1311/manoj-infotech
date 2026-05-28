@@ -84,7 +84,7 @@ export default function ServicesGrid() {
           className={`transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
           style={{
             fontFamily: 'var(--font-label)',
-            fontSize: '0.7rem',
+            fontSize: '0.85rem',
             letterSpacing: '0.22em',
             textTransform: 'uppercase',
             color: '#DC2626',
@@ -147,8 +147,13 @@ function ServiceCard({
 }) {
   const [hovered, setHovered] = useState(false);
 
+  const scrollToEnquire = () => {
+    document.getElementById('enquire')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <div
+      onClick={scrollToEnquire}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       style={{
@@ -156,7 +161,7 @@ function ServiceCard({
         border: hovered ? '1px solid rgba(220,38,38,0.45)' : '1px solid var(--brand-border)',
         padding: '32px 28px',
         background: hovered ? 'rgba(220,38,38,0.05)' : 'var(--brand-surface)',
-        cursor: 'default',
+        cursor: 'pointer',
         opacity: isInView ? 1 : 0,
         transform: isInView ? 'translateY(0)' : 'translateY(24px)',
         transition: `opacity 0.55s ease ${200 + index * 100}ms, transform 0.55s ease ${200 + index * 100}ms, border-color 0.25s ease, background 0.25s ease`,
@@ -226,26 +231,6 @@ function ServiceCard({
         {service.description}
       </p>
 
-      {/* Enquire link */}
-      <a
-        href="#enquire"
-        style={{
-          fontFamily: 'var(--font-label)',
-          fontSize: '0.65rem',
-          letterSpacing: '0.15em',
-          textTransform: 'uppercase',
-          color: '#DC2626',
-          textDecoration: 'none',
-          display: 'inline-flex',
-          alignItems: 'center',
-          gap: 6,
-          transition: 'opacity 0.2s',
-          marginTop: 4,
-          opacity: hovered ? 0.75 : 1,
-        }}
-      >
-        Enquire Now →
-      </a>
     </div>
   );
 }

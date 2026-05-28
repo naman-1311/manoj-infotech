@@ -3,7 +3,7 @@
 import { useRef } from 'react';
 import { useInView } from '@/hooks/useInView';
 
-const WA_NUMBER = '917200042381';
+const WA_NUMBER = '916381387245';
 const WA_MESSAGE = encodeURIComponent(
   'Hi Manoj Infotec! I\'m looking for IT products/solutions. Please guide me.'
 );
@@ -147,38 +147,6 @@ export default function EnquireCTA() {
             Chat on WhatsApp
           </a>
 
-          <a
-            href="#services"
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: 8,
-              background: 'transparent',
-              color: 'var(--brand-muted)',
-              border: '1.5px solid var(--brand-border)',
-              fontFamily: 'var(--font-label)',
-              fontSize: 13,
-              fontWeight: 600,
-              letterSpacing: '0.06em',
-              textTransform: 'uppercase',
-              textDecoration: 'none',
-              borderRadius: 999,
-              padding: '16px 32px',
-              transition: 'border-color 0.25s ease, color 0.25s ease',
-            }}
-            onMouseEnter={e => {
-              const el = e.currentTarget as HTMLAnchorElement;
-              el.style.borderColor = '#DC2626';
-              el.style.color = 'var(--brand-text)';
-            }}
-            onMouseLeave={e => {
-              const el = e.currentTarget as HTMLAnchorElement;
-              el.style.borderColor = 'var(--brand-border)';
-              el.style.color = 'var(--brand-muted)';
-            }}
-          >
-            View Services
-          </a>
         </div>
       </div>
     </section>

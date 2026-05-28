@@ -23,7 +23,7 @@ export default function LocationMap() {
         <p
           style={{
             fontFamily: 'var(--font-label)',
-            fontSize: '0.7rem',
+            fontSize: '0.85rem',
             letterSpacing: '0.22em',
             textTransform: 'uppercase',
             color: '#DC2626',

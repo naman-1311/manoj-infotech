@@ -166,7 +166,7 @@ export default function Navbar({
             <span style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', fontFamily: 'var(--font-label)', color: '#ffffff', display: 'inline-flex', alignItems: 'center', gap: 10, whiteSpace: 'nowrap' }}>
               <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#EF4444', flexShrink: 0 }} />
               Manoj Infotec
-              <span style={{ color: 'rgba(255,255,255,0.3)', fontWeight: 400, fontSize: 11, letterSpacing: '0.2em' }}>·</span>
+              <span style={{ color: 'rgba(255,255,255,0.3)', fontWeight: 400, fontSize: 11, letterSpacing: '0.2em' }}>-</span>
               <span style={{ color: 'rgba(255,255,255,0.5)', fontWeight: 400, fontSize: 11, letterSpacing: '0.18em' }}>House Of Computers</span>
             </span>
           )}

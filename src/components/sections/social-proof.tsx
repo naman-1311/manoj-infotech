@@ -25,6 +25,36 @@ const TESTIMONIALS = [
   },
 ];
 
+function TestimonialCard({ t, i, isInView }: { t: typeof TESTIMONIALS[0]; i: number; isInView: boolean }) {
+  return (
+    <div
+      className="rounded-2xl p-8 flex flex-col justify-between"
+      style={{
+        background: 'var(--brand-bg)',
+        border: '1px solid var(--brand-border)',
+        cursor: 'default',
+        height: '100%',
+        opacity: isInView ? 1 : 0,
+        transform: isInView ? 'translateY(0)' : 'translateY(24px)',
+        transition: `opacity 0.55s ease ${300 + i * 120}ms, transform 0.55s ease ${300 + i * 120}ms`,
+      }}
+    >
+      <div style={{ marginBottom: 16, display: 'flex', gap: 4 }}>
+        {Array.from({ length: 5 }).map((_, si) => (
+          <span key={si} style={{ color: '#DC2626', fontSize: '0.85rem' }}>★</span>
+        ))}
+      </div>
+      <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.95rem', color: 'var(--brand-text)', lineHeight: 1.8, flex: 1 }}>
+        &ldquo;{t.quote}&rdquo;
+      </p>
+      <div style={{ borderTop: '1px solid var(--brand-border)', marginTop: '1.5rem', paddingTop: '1rem' }}>
+        <p style={{ fontFamily: 'var(--font-label)', fontSize: '0.7rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--brand-text)' }}>{t.name}</p>
+        <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.78rem', color: 'var(--brand-muted)', marginTop: '0.125rem' }}>{t.detail}</p>
+      </div>
+    </div>
+  );
+}
+
 export default function SocialProof() {
   const ref = useRef<HTMLElement>(null);
   const isInView = useInView(ref, 0.05, '0px 0px -50% 0px');
@@ -66,73 +96,22 @@ export default function SocialProof() {
           <WordReveal text="real results." isInView={isInView} baseDelay={200} stagger={60} style={{ color: '#DC2626', display: 'inline', marginLeft: '0.25em' }} />
         </h2>
 
-        {/* Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+        {/* Desktop Cards */}
+        <div className="testimonials-desktop grid grid-cols-1 md:grid-cols-3 gap-5">
           {TESTIMONIALS.map((t, i) => (
-            <div
-              key={t.name}
-              className="rounded-2xl p-8 flex flex-col justify-between"
-              style={{
-                background: 'var(--brand-bg)',
-                border: '1px solid var(--brand-border)',
-                cursor: 'default',
-                opacity: isInView ? 1 : 0,
-                transform: isInView ? 'translateY(0)' : 'translateY(24px)',
-                transition: `opacity 0.55s ease ${300 + i * 120}ms, transform 0.55s ease ${300 + i * 120}ms`,
-              }}
-            >
-              {/* Stars */}
-              <div style={{ marginBottom: 16, display: 'flex', gap: 4 }}>
-                {Array.from({ length: 5 }).map((_, si) => (
-                  <span key={si} style={{ color: '#DC2626', fontSize: '0.85rem' }}>★</span>
-                ))}
-              </div>
-
-              {/* Quote */}
-              <p
-                style={{
-                  fontFamily: 'var(--font-body)',
-                  fontSize: '0.95rem',
-                  color: 'var(--brand-text)',
-                  lineHeight: 1.8,
-                  flex: 1,
-                }}
-              >
-                &ldquo;{t.quote}&rdquo;
-              </p>
-
-              {/* Attribution */}
-              <div
-                style={{
-                  borderTop: '1px solid var(--brand-border)',
-                  marginTop: '1.5rem',
-                  paddingTop: '1rem',
-                }}
-              >
-                <p
-                  style={{
-                    fontFamily: 'var(--font-label)',
-                    fontSize: '0.7rem',
-                    letterSpacing: '0.15em',
-                    textTransform: 'uppercase',
-                    color: 'var(--brand-text)',
-                  }}
-                >
-                  {t.name}
-                </p>
-                <p
-                  style={{
-                    fontFamily: 'var(--font-body)',
-                    fontSize: '0.78rem',
-                    color: 'var(--brand-muted)',
-                    marginTop: '0.125rem',
-                  }}
-                >
-                  {t.detail}
-                </p>
-              </div>
-            </div>
+            <TestimonialCard key={t.name} t={t} i={i} isInView={isInView} />
           ))}
+        </div>
+
+        {/* Mobile infinite scroll */}
+        <div className="testimonials-mobile" style={{ overflow: 'hidden', margin: '0 -24px' }}>
+          <div className="testimonials-marquee" style={{ display: 'flex', gap: 16, width: 'max-content' }}>
+            {[...TESTIMONIALS, ...TESTIMONIALS].map((t, i) => (
+              <div key={i} style={{ width: '85vw', flexShrink: 0 }}>
+                <TestimonialCard t={t} i={0} isInView={true} />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

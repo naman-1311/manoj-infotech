@@ -353,6 +353,25 @@ h2 {
   }
 }
 
+/* ── Testimonials marquee ── */
+@keyframes testimonials-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.testimonials-marquee {
+  animation: testimonials-scroll 18s linear infinite;
+}
+.testimonials-marquee:hover {
+  animation-play-state: paused;
+}
+.testimonials-desktop { display: grid; }
+.testimonials-mobile { display: none; }
+
+@media (max-width: 767px) {
+  .testimonials-desktop { display: none; }
+  .testimonials-mobile { display: block; }
+}
+
 /* ── Footer ── */
 .footer-logo { height: 240px; }
 

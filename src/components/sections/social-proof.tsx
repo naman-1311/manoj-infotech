@@ -9,36 +9,43 @@ const TESTIMONIALS = [
     quote: "Supportive throughout the process. Most of my old PC parts burnt out, and Manoj Infotech helped me with a new build at an effective price and ensured all my queries were answered before I confirmed the new PC build.",
     name: 'Johnson G',
     detail: 'Custom PC Build',
-  },
-  {
-    quote: "Built my PC here. Good understanding of my need and good recommendation for that. Genuine spares and excellent service. Best place and affordable price.",
-    name: 'Prince Derasariya',
-    detail: 'Custom PC Build',
-  },
-  {
-    quote: "Awesome work, I got the PC in one day. Best after-sales support & best price too.",
-    name: 'Siva Soorya',
-    detail: 'PC Build Customer',
-  },
-  {
-    quote: "We have been dealing with Manoj Infotech for more than 2 years now. Their price is always affordable compared with other suppliers in the market. On-time response, timely delivery and kind support are their notable marks.",
-    name: 'ARPL EDP',
-    detail: 'Business Client',
+    stars: 5,
   },
   {
     quote: "Manoj Infotec built me a gaming rig within my ₹80k budget and it runs every game at ultra settings. The attention to detail in cable management alone is worth it.",
     name: 'Rohan M.',
     detail: 'Gaming Rig Customer',
+    stars: 4,
+  },
+  {
+    quote: "Built my PC here. Good understanding of my need and good recommendation for that. Genuine spares and excellent service. Best place and affordable price.",
+    name: 'Prince Derasariya',
+    detail: 'Custom PC Build',
+    stars: 5,
   },
   {
     quote: "I needed a Blender + DaVinci workstation urgently. They delivered a fully tested build in 3 days. Renders that took 2 hours now finish in 20 minutes.",
     name: 'Priya K.',
     detail: 'Workstation Customer',
+    stars: 4,
+  },
+  {
+    quote: "Awesome work, I got the PC in one day. Best after-sales support & best price too.",
+    name: 'Siva Soorya',
+    detail: 'PC Build Customer',
+    stars: 5,
   },
   {
     quote: "Our office needed 5 budget builds fast. Manoj Infotec handled everything — procurement, assembly, OS install. Couldn't ask for better service.",
     name: 'Sameer D.',
     detail: 'Business Client',
+    stars: 4,
+  },
+  {
+    quote: "We have been dealing with Manoj Infotech for more than 2 years now. Their price is always affordable compared with other suppliers in the market. On-time response, timely delivery and kind support are their notable marks.",
+    name: 'ARPL EDP',
+    detail: 'Business Client',
+    stars: 5,
   },
 ];
 
@@ -57,9 +64,22 @@ function TestimonialCard({ t, i, isInView }: { t: typeof TESTIMONIALS[0]; i: num
       }}
     >
       <div style={{ marginBottom: 16, display: 'flex', gap: 4 }}>
-        {Array.from({ length: 5 }).map((_, si) => (
-          <span key={si} style={{ color: '#DC2626', fontSize: '0.85rem' }}>★</span>
-        ))}
+        {Array.from({ length: 5 }).map((_, si) => {
+          const full = si < Math.floor(t.stars);
+          const half = !full && si < t.stars;
+          return (
+            <span key={si} style={{ fontSize: '0.85rem', position: 'relative', display: 'inline-block', lineHeight: 1 }}>
+              {/* empty star base */}
+              <span style={{ color: 'rgba(255,255,255,0.15)' }}>★</span>
+              {full && (
+                <span style={{ position: 'absolute', left: 0, top: 0, color: '#DC2626', overflow: 'hidden', whiteSpace: 'nowrap' }}>★</span>
+              )}
+              {half && (
+                <span style={{ position: 'absolute', left: 0, top: 0, color: '#DC2626', overflow: 'hidden', whiteSpace: 'nowrap', width: '50%', display: 'block' }}>★</span>
+              )}
+            </span>
+          );
+        })}
       </div>
       <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.95rem', color: 'var(--brand-text)', lineHeight: 1.8, flex: 1 }}>
         &ldquo;{t.quote}&rdquo;

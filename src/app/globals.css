@@ -1,0 +1,847 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+
+:root {
+  --background: #0D0000;
+  --foreground: #F5F0F0;
+  --nav-height: 56px;
+
+  /* Brand tokens — neutral dark with red accent */
+  --brand-bg: #0C0C0C;
+  --brand-surface: #161616;
+  --brand-accent: #DC2626;
+  --brand-accent-glow: #EF4444;
+  --brand-text: #F0EEEE;
+  --brand-muted: #8A8A8A;
+  --brand-border: #2A2A2A;
+
+  /* Navbar tokens */
+  --nav-bg: rgba(13,0,0,0.85);
+  --nav-bg-open: rgba(13,0,0,0.97);
+  --nav-border: rgba(255,255,255,0.08);
+  --nav-text: #ffffff;
+  --nav-muted: rgba(255,255,255,0.55);
+
+  /* Legacy aliases (used in portal pages — keep for compatibility) */
+  --brand-primary: #2A2A2A;
+  --brand-secondary: #0C0C0C;
+  --brand-beige: #2A2A2A;
+  --brand-blue: #DC2626;
+  --brand-gray: #161616;
+  --brand-dark: #0C0C0C;
+  --brand-dark-text: #F0EEEE;
+
+  /* Accent palette */
+  --peach: #7F1D1D;
+  --softblue: #1E293B;
+  --softteal: #1A2230;
+  --softlavender: #111827;
+  --cream: #161616;
+
+  /* Fonts */
+  --font-heading: "DM Serif Display", Georgia, serif;
+  --font-body: "DM Sans", "Plus Jakarta Sans", sans-serif;
+  --font-display: "Matiere Condensed", "DM Serif Display", Georgia, serif;
+  --font-body-alt: "FT Regola Neue", "DM Sans", sans-serif;
+  --font-label: "DIN Medium", "Manrope", sans-serif;
+}
+
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--brand-primary);
+  --color-secondary: var(--brand-secondary);
+
+  --color-peach: var(--peach);
+  --color-softblue: var(--softblue);
+  --color-softteal: var(--softteal);
+  --color-softlavender: var(--softlavender);
+  --color-cream: var(--cream);
+  --color-brand-beige: var(--brand-beige);
+  --color-brand-blue: var(--brand-blue);
+  --color-brand-gray: #EDECEA;
+  --color-brand-dark: #2C2C2A;
+
+  /* Keep default Next fonts, and map project fonts */
+  --font-sans: "Plus Jakarta Sans", var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  /* Map Tailwind utilities to next/font injected variables */
+  --font-heading: var(--font-heading);
+  --font-body: var(--font-body);
+
+  @keyframes fadeSlideIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes waveAnimation {
+
+    0%,
+    100% {
+      height: 8px;
+    }
+
+    50% {
+      height: 24px;
+    }
+  }
+
+  @keyframes pulse {
+
+    0%,
+    100% {
+      opacity: 1;
+    }
+
+    50% {
+      opacity: 0.5;
+    }
+  }
+
+  --animate-fade-slide-in: fadeSlideIn 0.3s ease-out;
+  --animate-wave: waveAnimation 1s ease-in-out infinite;
+  --animate-pulse-custom: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+
+  @keyframes wordFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+}
+
+html {
+  overflow-x: hidden;
+}
+
+body {
+  background: var(--brand-bg);
+  color: var(--brand-text);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+}
+
+h1,
+h2 {
+  font-weight: 500;
+}
+
+/* Custom Components Styles */
+.chat-container {
+  height: calc(100vh - 140px);
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
+.message-bubble {
+  animation: var(--animate-fade-slide-in);
+}
+
+.voice-active .waveform-bar {
+  animation: var(--animate-wave);
+}
+
+.alerts-panel {
+  transform: translateY(-100%);
+  transition: transform 0.3s ease-out;
+}
+
+.alerts-panel.open {
+  transform: translateY(0);
+}
+
+/* Assessment funnel — mobile sticky CTA */
+@media (max-width: 640px) {
+  .assessment-mobile-cta {
+    display: block !important;
+  }
+}
+
+/* Assessment funnel — lifestyle grid responsive */
+@media (max-width: 540px) {
+  .assessment-lifestyle-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .assessment-name-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+.pulse-dot {
+  animation: var(--animate-pulse-custom);
+}
+
+.map-marker {
+  transition: transform 0.2s ease;
+}
+
+.map-marker:hover {
+  transform: scale(1.1);
+}
+
+.input-container {
+  transition: all 0.3s ease;
+}
+
+.listening-state {
+  background: linear-gradient(135deg, var(--softlavender) 0%, var(--softblue) 100%);
+}
+
+.word-cycle {
+  animation: wordFadeIn 0.4s ease forwards;
+}
+
+.marquee-track {
+  animation: marquee 20s linear infinite;
+}
+
+.waitlist-textarea::placeholder {
+  transform: translateY(20px);
+}
+
+/* ── Responsive utilities ── */
+
+/* Hide scrollbar on nav overflow-x containers */
+.scrollbar-none::-webkit-scrollbar { display: none; }
+
+/* ── Global scrollbar — light on dark theme ── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.45);
+}
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.25) #1a1a1a;
+}
+
+/* Onboarding / join flow responsive */
+@media (max-width: 767px) {
+  .join-two-col {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Admin / member portal pages — common page wrapper */
+@media (max-width: 767px) {
+  .portal-page {
+    padding: 20px 16px 48px !important;
+  }
+  .portal-card-grid-2 {
+    grid-template-columns: 1fr !important;
+  }
+  .portal-card-grid-3 {
+    grid-template-columns: 1fr !important;
+  }
+  .portal-card-grid-4 {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .portal-table-wrapper {
+    overflow-x: auto;
+  }
+  .portal-table-wrapper table {
+    min-width: 600px;
+  }
+  .portal-stat-row {
+    flex-wrap: wrap;
+  }
+  .portal-stat-row > * {
+    flex: 1 1 calc(50% - 8px);
+    min-width: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .portal-card-grid-4 {
+    grid-template-columns: 1fr !important;
+  }
+  .portal-stat-row > * {
+    flex: 1 1 100%;
+  }
+}
+
+/* Section spacing — reduce on mobile */
+@media (max-width: 767px) {
+  .section-py { padding-top: 4rem !important; padding-bottom: 4rem !important; }
+}
+
+/* ── Hero ── */
+.hero-mobile-hamburger { display: none; }
+.hero-mobile-bg { display: none; }
+.hero-nav-logo { height: 52px; }
+
+@media (max-width: 1024px) {
+  .hero-sidebar-strip { display: none !important; width: 0 !important; border: none !important; overflow: hidden !important; }
+  .hero-top-nav { left: 0 !important; }
+  .hero-mobile-hamburger { display: flex !important; align-items: center; }
+}
+
+@media (max-width: 767px) {
+  .hero-top-nav { border-bottom: none !important; }
+  .hero-main-section {
+    padding-left: 20px !important;
+    padding-right: 16px !important;
+    padding-bottom: 48px !important;
+  }
+  .hero-nav-cta { padding: 7px 14px !important; font-size: 12px !important; }
+  .hero-nav-greeting { display: none !important; }
+  .hero-nav-logo { height: 40px !important; }
+}
+
+@media (max-width: 400px) {
+  .hero-nav-cta { display: none !important; }
+}
+
+/* ── Menu overlay ── */
+@media (max-width: 1024px) {
+  .menu-overlay-panel {
+    left: 0 !important;
+  }
+}
+@media (max-width: 767px) {
+  .menu-overlay-panel {
+    grid-template-columns: 1fr !important;
+    grid-template-rows: auto !important;
+    overflow-y: auto;
+    gap: 10px !important;
+    padding: 10px !important;
+  }
+  .menu-main-card {
+    grid-column: 1 !important;
+    grid-row: auto !important;
+  }
+}
+
+/* ── Footer ── */
+.footer-logo { height: 240px; }
+
+@media (max-width: 767px) {
+  .footer-top-row {
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    gap: 32px !important;
+  }
+  .footer-contact-col {
+    align-items: center !important;
+  }
+  .footer-nav-col {
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 16px !important;
+  }
+  .footer-nav-link {
+    font-size: 0.9rem !important;
+    font-weight: 400 !important;
+    letter-spacing: 0 !important;
+    line-height: 1.4 !important;
+  }
+  .footer-contact-link {
+    font-size: 0.9rem !important;
+    font-weight: 400 !important;
+    letter-spacing: 0 !important;
+    line-height: 1.4 !important;
+    justify-content: center !important;
+  }
+  .footer-logo { height: 160px !important; }
+  .footer-bottom-row {
+    text-align: center !important;
+  }
+}
+
+/* ── Member navbar ── */
+.member-mobile-hamburger { display: none; }
+@media (max-width: 1023px) {
+  .member-nav-links-area { display: none !important; }
+  .member-nav-divider { display: none !important; }
+  .member-portal-label { display: none !important; }
+}
+@media (max-width: 767px) {
+  .member-mobile-hamburger { display: flex !important; align-items: center; }
+}
+@media (max-width: 480px) {
+  .member-user-name-text { display: none !important; }
+  .member-user-plan-text { display: none !important; }
+  .member-user-chevron { display: none !important; }
+}
+
+/* ── Admin navbar ── */
+.admin-mobile-hamburger { display: none; }
+/* Medium screens: scale font/gap so all 8 links remain visible */
+@media (max-width: 1380px) and (min-width: 1024px) {
+  .admin-nav-links { gap: 10px !important; }
+  .admin-nav-links a { font-size: 8.5px !important; }
+}
+/* Tablet and below: hide sidebar strip, shift nav to full width, show hamburger */
+@media (max-width: 1023px) {
+  .admin-nav-links { display: none !important; }
+  .admin-sidebar-strip { display: none !important; }
+  .admin-top-nav { left: 0 !important; }
+  .admin-mobile-hamburger { display: flex !important; align-items: center; }
+}
+
+/* ── Doctor navbar ── */
+.doctor-mobile-hamburger { display: none; }
+/* Medium screens: scale font/gap so all 6 links remain visible */
+@media (max-width: 1280px) and (min-width: 1024px) {
+  .doctor-nav-links { gap: 12px !important; }
+  .doctor-nav-links a { font-size: 9px !important; letter-spacing: 0.07em !important; }
+}
+/* Tablet and below: hide sidebar strip, shift nav to full width, show hamburger */
+@media (max-width: 1023px) {
+  .doctor-nav-links { display: none !important; }
+  .doctor-sidebar-strip { display: none !important; }
+  .doctor-top-nav { left: 0 !important; }
+  .doctor-mobile-hamburger { display: flex !important; align-items: center; }
+  .menu-overlay-panel { left: 0 !important; }
+}
+@media (max-width: 767px) {
+  /* Hide portal label + divider on mobile to prevent navbar overflow */
+  .doctor-portal-label { display: none !important; }
+  .doctor-portal-divider { display: none !important; }
+  /* Profile button: show only avatar on mobile, push to right edge */
+  .doctor-profile-text { display: none !important; }
+  .doctor-profile-chevron { display: none !important; }
+  .doctor-profile-wrapper { margin-left: auto !important; }
+}
+
+/* ── Membership tiers ── */
+@media (max-width: 767px) {
+  .membership-table-inner { min-width: 480px; }
+  .membership-scroll-area { overflow-x: auto; }
+}
+@media (max-width: 1023px) {
+  .membership-right-col { margin-top: 0; }
+  /* CTA row: remove table-aligned left padding so buttons fit viewport */
+  .membership-cta-row { padding-left: 0 !important; }
+}
+
+/* ── Member dashboard ── */
+@media (max-width: 1100px) {
+  .dash-grid { grid-template-columns: 1fr 1fr !important; }
+  .dash-charts { grid-template-columns: 1fr !important; }
+  .dash-protocols-grid { grid-template-columns: repeat(2, 1fr) !important; }
+}
+@media (max-width: 767px) {
+  .dash-wrapper { padding: 16px 16px 48px !important; }
+  .dash-welcome-banner { padding: 24px 20px !important; }
+  .dash-banner-divider { display: none !important; }
+  .dash-stats-band { overflow-x: auto; flex-wrap: nowrap; }
+  .dash-stats-band > div { min-width: 120px; flex-shrink: 0; }
+  .dash-grid { grid-template-columns: 1fr !important; }
+  .dash-charts { grid-template-columns: 1fr !important; }
+  .dash-protocols-grid { grid-template-columns: repeat(2, 1fr) !important; }
+}
+@media (max-width: 480px) {
+  .dash-protocols-grid { grid-template-columns: 1fr !important; }
+}
+
+/* ── Appointments ── */
+@media (max-width: 540px) {
+  .appts-stats-grid { grid-template-columns: 1fr 1fr !important; }
+}
+
+/* ── Lab results ── */
+@media (max-width: 540px) {
+  .lab-stats-grid { grid-template-columns: 1fr 1fr !important; }
+}
+
+/* ── Billing ── */
+@keyframes spin { to { transform: rotate(360deg); } }
+@media (max-width: 540px) {
+  .billing-cards-grid { grid-template-columns: 1fr !important; }
+}
+
+/* ── Messages ── */
+@media (max-width: 640px) {
+  /* Sidebar = full-screen conversation list by default */
+  .messages-sidebar {
+    width: 100% !important;
+    border-right: none !important;
+  }
+  /* Sidebar hides when chat is open */
+  .messages-sidebar--chat-open {
+    display: none !important;
+  }
+  /* Full-screen list: bigger touch targets and no name truncation */
+  .messages-sidebar button {
+    padding: 16px 20px !important;
+    gap: 14px !important;
+  }
+  .messages-sidebar-name {
+    max-width: none !important;
+    font-size: 0.95rem !important;
+  }
+  .messages-sidebar-avatar {
+    width: 44px !important;
+    height: 44px !important;
+    font-size: 0.6rem !important;
+  }
+
+  /* Chat panel hidden by default on mobile */
+  .messages-chat-panel {
+    display: none !important;
+  }
+  /* Chat panel takes full screen when a conversation is open */
+  .messages-chat-panel--open {
+    display: flex !important;
+    flex-direction: column;
+    flex: 1;
+    width: 100%;
+  }
+  /* Back arrow — only visible on mobile */
+  .messages-back-btn {
+    display: flex !important;
+  }
+  .messages-chat-area { padding: 14px 12px !important; }
+  .messages-bubble { max-width: 82% !important; }
+  .messages-chat-header { padding: 12px 16px !important; }
+  .messages-schedule-btn { padding: 0.45rem 0.7rem !important; font-size: 0.52rem !important; }
+  .messages-input-area { padding: 12px 14px 16px !important; }
+}
+
+/* ── Admin dashboard ── */
+@media (max-width: 1100px) {
+  .admin-dash-stats { grid-template-columns: repeat(2, 1fr) !important; }
+}
+@media (max-width: 767px) {
+  .admin-dash-two-col { grid-template-columns: 1fr !important; }
+}
+@media (max-width: 480px) {
+  .admin-dash-stats { grid-template-columns: 1fr 1fr !important; }
+}
+
+/* ── Service detail page ── */
+@media (max-width: 767px) {
+  .service-scroll-indicator { display: none !important; }
+  .service-detail-section { padding: 3rem 1.5rem !important; }
+}
+
+/* ── Toast responsive sizing ── */
+@media (max-width: 480px) {
+  .Toastify__toast-container {
+    width: calc(100vw - 24px) !important;
+    left: 12px !important;
+    right: 12px !important;
+    top: 12px !important;
+  }
+  .Toastify__toast {
+    font-size: 0.78rem !important;
+    padding: 0.65rem 0.85rem !important;
+    border-radius: 10px !important;
+    min-height: unset !important;
+  }
+}
+
+/* ── Login page responsive ── */
+@media (max-width: 480px) {
+  .login-form-card { padding: 1.5rem !important; }
+  .login-right-panel { padding: 32px 20px !important; }
+}
+
+/* ── Membership CTA buttons — stack + shrink on mobile ── */
+@media (max-width: 767px) {
+  .membership-cta-row {
+    flex-direction: column !important;
+    gap: 8px !important;
+  }
+  .membership-cta-row > div { flex: none !important; width: 100% !important; }
+  .membership-cta-row button {
+    font-size: 0.6rem !important;
+    padding: 0.5rem 0.4rem !important;
+    letter-spacing: 0.08em;
+  }
+}
+
+/* ── Admin appointments calendar ── */
+@media (max-width: 767px) {
+  .admin-cal-grid { grid-template-columns: 1fr !important; }
+}
+
+/* ── Admin inbox ── */
+@media (max-width: 767px) {
+  .admin-inbox-grid { grid-template-columns: 1fr !important; }
+}
+
+/* ── Admin events ── */
+@media (max-width: 640px) {
+  .admin-events-grid { grid-template-columns: 1fr !important; }
+}
+
+/* ── Admin member detail ── */
+@media (max-width: 900px) {
+  .admin-member-detail-grid { grid-template-columns: 1fr !important; }
+}
+
+/* ── Admin content ── */
+@media (max-width: 767px) {
+  .admin-content-bios-grid { grid-template-columns: 1fr !important; }
+}
+@media (max-width: 1023px) and (min-width: 768px) {
+  .admin-content-bios-grid { grid-template-columns: repeat(2, 1fr) !important; }
+}
+
+/* ── Onboarding membership tiers ── */
+@media (max-width: 767px) {
+  .onboard-tiers-grid { grid-template-columns: 1fr !important; }
+}
+@media (max-width: 1023px) and (min-width: 768px) {
+  .onboard-tiers-grid { grid-template-columns: 1fr 1fr !important; }
+}
+
+/* ── Onboarding checkout ── */
+@media (max-width: 767px) {
+  .checkout-layout-grid { grid-template-columns: 1fr !important; }
+}
+
+/* ── Doctor dashboard ── */
+@media (max-width: 1100px) {
+  .doctor-dash-stats { grid-template-columns: repeat(2, 1fr) !important; }
+}
+@media (max-width: 480px) {
+  .doctor-dash-stats { grid-template-columns: 1fr 1fr !important; }
+}
+@media (max-width: 767px) {
+  .portal-table-wrapper > div { min-width: 640px; }
+}
+
+/* ── Doctor schedule ── */
+@media (max-width: 900px) {
+  .doctor-schedule-grid { grid-template-columns: 1fr !important; }
+}
+
+/* ── Doctor profile ── */
+@media (max-width: 900px) {
+  .doctor-profile-grid { grid-template-columns: 1fr !important; }
+}
+
+/* ── Doctor patients list ── */
+@media (max-width: 767px) {
+  .patients-stats-grid { grid-template-columns: 1fr 1fr !important; }
+}
+@media (max-width: 480px) {
+  .patients-stats-grid { grid-template-columns: 1fr !important; }
+}
+
+/* ── Treatments grid ── */
+@media (max-width: 767px) {
+  .treatments-product-grid { grid-template-columns: 1fr !important; }
+}
+@media (max-width: 1023px) and (min-width: 768px) {
+  .treatments-product-grid { grid-template-columns: repeat(2, 1fr) !important; }
+}
+
+/* ── Logout modal animations ── */
+@keyframes lgFadeIn  { from { opacity: 0 } to { opacity: 1 } }
+@keyframes lgScaleIn { from { opacity: 0; transform: translate(-50%,-50%) scale(0.9) } to { opacity: 1; transform: translate(-50%,-50%) scale(1) } }
+
+/* ── Portal content layout ── */
+@media (max-width: 767px) {
+  .admin-portal-content  { padding-left: 0 !important; }
+  .doctor-portal-content { padding-left: 0 !important; }
+  .member-sidebar-strip  { display: none !important; }
+}
+
+/* ── Menu overlay — tablet (iPad) compact ── */
+@media (max-width: 1023px) and (min-width: 768px) {
+  .menu-overlay-panel {
+    gap: 10px !important;
+    padding: 10px !important;
+    grid-template-rows: minmax(0, 190px) minmax(0, 190px) !important;
+    align-content: start !important;
+  }
+  .menu-main-card {
+    padding: 0.75rem 1rem !important;
+  }
+  .menu-main-card nav a {
+    padding: 0.4rem 0 !important;
+    font-size: clamp(0.8rem, 1.8vw, 1.1rem) !important;
+  }
+  .menu-service-card {
+    padding: 0.5rem 0.75rem !important;
+  }
+  .menu-service-card .card-title {
+    font-size: clamp(0.85rem, 1.8vw, 1.1rem) !important;
+    margin-bottom: 0 !important;
+  }
+  .menu-service-card .card-label {
+    font-size: 0.6rem !important;
+    margin-bottom: 0.25rem !important;
+  }
+}
+
+/* ── Menu overlay — mobile ── */
+@media (max-width: 767px) {
+  .menu-overlay-panel {
+    left: 0 !important;
+    grid-template-columns: 1fr 1fr !important;
+    grid-template-rows: auto !important;
+    padding: 8px !important;
+    gap: 8px !important;
+  }
+  .menu-main-card {
+    grid-column: 1 / span 2 !important;
+    grid-row: 1 !important;
+    min-height: auto !important;
+    padding: 1rem 1.25rem !important;
+  }
+  .hero-nav-greeting { display: none !important; }
+}
+
+/* ── Member checkout — single column on mobile ── */
+@media (max-width: 767px) {
+  .checkout-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ── Patient chart overview — stack on mobile ── */
+.patient-chart-overview-grid {
+  grid-template-columns: 1fr !important;
+}
+@media (min-width: 640px) {
+  .patient-chart-overview-grid {
+    grid-template-columns: 1fr 1fr !important;
+  }
+}
+
+/* ── 4-stat grid — 2×2 on mobile, 4 across on desktop ── */
+.four-stat-grid {
+  grid-template-columns: repeat(2, 1fr) !important;
+}
+@media (min-width: 768px) {
+  .four-stat-grid {
+    grid-template-columns: repeat(4, 1fr) !important;
+  }
+}
+
+/* ── Doctor RX decision — stacked on mobile, two-col on desktop ── */
+.doctor-rx-body {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+}
+@media (min-width: 768px) {
+  .doctor-rx-body {
+    display: grid !important;
+    grid-template-columns: 60% 1fr !important;
+    align-items: start !important;
+  }
+}
+
+/* ── Treatment RX tracking grid — mobile first ── */
+.rx-tracking-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+@media (min-width: 768px) {
+  .rx-tracking-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+}
+
+/* ── Treatment RX checkout — vertical stack on mobile ── */
+@media (max-width: 767px) {
+  .rx-form-layout {
+    flex-direction: column !important;
+    gap: 1.5rem !important;
+  }
+  .rx-form-col {
+    flex: none !important;
+    width: 100% !important;
+  }
+  .rx-product-sidebar {
+    flex: none !important;
+    width: 100% !important;
+    position: static !important;
+    order: -1;
+  }
+}
+
+/* ── Service detail sections — reduce vertical padding on mobile ── */
+@media (max-width: 767px) {
+  .service-detail-section {
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+  }
+  .service-scroll-indicator { display: none !important; }
+
+  /* Waitlist form card — tighter padding on small screens */
+  .waitlist-form-card {
+    padding: 1.25rem !important;
+  }
+  .waitlist-form-card input,
+  .waitlist-form-card textarea {
+    padding-top: 0.75rem !important;
+    padding-bottom: 0.5rem !important;
+  }
+}
+
+/* ── Schedule header — tighter margin + stacked meta on mobile ── */
+@media (max-width: 767px) {
+  .schedule-page-header {
+    margin-bottom: 1.25rem !important;
+  }
+  .schedule-header-meta {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.4rem !important;
+  }
+  .schedule-header-divider {
+    display: none !important;
+  }
+}
+
+/* ── RX digital signature box — stack on mobile ── */
+@media (max-width: 640px) {
+  .rx-sig-box {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+  .rx-sig-box > *:last-child {
+    align-self: flex-end !important;
+  }
+}
+

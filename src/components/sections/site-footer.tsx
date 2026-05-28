@@ -33,21 +33,36 @@ export default function SiteFooter() {
         >
           {/* Left — contact details */}
           <div className="footer-contact-col" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', alignSelf: 'stretch', gap: 0, flex: 1 }}>
-            {[
-              { href: 'tel:7200042381', label: '7200042381', icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#DC2626" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.35 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.56a16 16 0 0 0 6.01 6.01l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" /></svg> },
-              { href: 'tel:9884042381', label: '9884042381', icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#DC2626" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.35 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.56a16 16 0 0 0 6.01 6.01l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" /></svg> },
-              { href: 'mailto:sales@manojinfotec.com', label: 'sales@manojinfotec.com', icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#DC2626" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}><rect x="2" y="4" width="20" height="16" rx="2" /><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" /></svg> },
-            ].map(({ href, label, icon }) => (
-              <a key={href} href={href}
-                className="footer-contact-link"
-                style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(1.1rem, 1.7vw, 1.9rem)', fontWeight: 300, letterSpacing: '-0.02em', color: 'var(--brand-muted)', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 12, transition: 'color 0.2s, transform 0.2s', lineHeight: 1.35 }}
-                onMouseEnter={e => { const el = e.currentTarget as HTMLAnchorElement; el.style.color = '#EF4444'; el.style.transform = 'translateX(6px)'; }}
-                onMouseLeave={e => { const el = e.currentTarget as HTMLAnchorElement; el.style.color = 'var(--brand-muted)'; el.style.transform = 'translateX(0)'; }}
-              >
-                {icon}{label}
-              </a>
-            ))}
-            <p className="footer-contact-link" style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(1.1rem, 1.7vw, 1.9rem)', fontWeight: 300, letterSpacing: '-0.02em', color: 'var(--brand-muted)', margin: 0, display: 'flex', alignItems: 'center', gap: 12, lineHeight: 1.35 }}>
+            {/* Desktop: flat list. Mobile: overridden to 2-col flex via CSS */}
+            {/* Phone 1 */}
+            <a href="tel:7200042381" className="footer-contact-link footer-contact-item footer-contact-phone"
+              style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(1.1rem, 1.7vw, 1.9rem)', fontWeight: 300, letterSpacing: '-0.02em', color: 'var(--brand-muted)', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 12, transition: 'color 0.2s, transform 0.2s', lineHeight: 1.35 }}
+              onMouseEnter={e => { const el = e.currentTarget as HTMLAnchorElement; el.style.color = '#EF4444'; el.style.transform = 'translateX(6px)'; }}
+              onMouseLeave={e => { const el = e.currentTarget as HTMLAnchorElement; el.style.color = 'var(--brand-muted)'; el.style.transform = 'translateX(0)'; }}
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#DC2626" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.35 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.56a16 16 0 0 0 6.01 6.01l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" /></svg>
+              7200042381
+            </a>
+            {/* Email — mobile: right col row 1 */}
+            <a href="mailto:sales@manojinfotec.com" className="footer-contact-link footer-contact-item footer-contact-email"
+              style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(1.1rem, 1.7vw, 1.9rem)', fontWeight: 300, letterSpacing: '-0.02em', color: 'var(--brand-muted)', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 12, transition: 'color 0.2s, transform 0.2s', lineHeight: 1.35 }}
+              onMouseEnter={e => { const el = e.currentTarget as HTMLAnchorElement; el.style.color = '#EF4444'; el.style.transform = 'translateX(6px)'; }}
+              onMouseLeave={e => { const el = e.currentTarget as HTMLAnchorElement; el.style.color = 'var(--brand-muted)'; el.style.transform = 'translateX(0)'; }}
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#DC2626" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}><rect x="2" y="4" width="20" height="16" rx="2" /><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" /></svg>
+              sales@manojinfotec.com
+            </a>
+            {/* Phone 2 */}
+            <a href="tel:9884042381" className="footer-contact-link footer-contact-item footer-contact-phone"
+              style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(1.1rem, 1.7vw, 1.9rem)', fontWeight: 300, letterSpacing: '-0.02em', color: 'var(--brand-muted)', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 12, transition: 'color 0.2s, transform 0.2s', lineHeight: 1.35 }}
+              onMouseEnter={e => { const el = e.currentTarget as HTMLAnchorElement; el.style.color = '#EF4444'; el.style.transform = 'translateX(6px)'; }}
+              onMouseLeave={e => { const el = e.currentTarget as HTMLAnchorElement; el.style.color = 'var(--brand-muted)'; el.style.transform = 'translateX(0)'; }}
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#DC2626" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.35 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.56a16 16 0 0 0 6.01 6.01l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" /></svg>
+              9884042381
+            </a>
+            {/* Address — mobile: right col row 2 */}
+            <p className="footer-contact-link footer-contact-item footer-contact-address" style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(1.1rem, 1.7vw, 1.9rem)', fontWeight: 300, letterSpacing: '-0.02em', color: 'var(--brand-muted)', margin: 0, display: 'flex', alignItems: 'center', gap: 12, lineHeight: 1.35 }}>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#DC2626" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z" /><circle cx="12" cy="10" r="3" /></svg>
               Mount Road, Chennai
             </p>

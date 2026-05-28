@@ -172,38 +172,11 @@ export default function Navbar({
           )}
         </span>
 
-        {/* Mobile brand name — centered in flex flow */}
-        {!isOpen && (
-          <span className="hero-nav-mobile-brand" style={{ flex: 1, textAlign: 'center', fontSize: 11, fontWeight: 600, letterSpacing: '0.2em', textTransform: 'uppercase', fontFamily: 'var(--font-label)', color: 'rgba(255,255,255,0.7)', whiteSpace: 'nowrap' }}>
-            Manoj Infotec
-          </span>
-        )}
+        {/* Mobile brand name — always visible, centered in flex flow */}
+        <span className="hero-nav-mobile-brand" style={{ flex: 1, textAlign: 'center', fontSize: 11, fontWeight: 600, letterSpacing: '0.2em', textTransform: 'uppercase', fontFamily: 'var(--font-label)', color: 'rgba(255,255,255,0.7)', whiteSpace: 'nowrap' }}>
+          Manoj Infotec
+        </span>
 
-        {/* Close hint when menu open */}
-        {isOpen && (
-          <button
-            onClick={() => setIsOpen(false)}
-            style={{
-              background: 'none',
-              border: `1.5px solid rgba(255,255,255,0.25)`,
-              borderRadius: 999,
-              padding: '7px 16px',
-              fontSize: 12,
-              fontFamily: 'var(--font-label)',
-              textTransform: 'uppercase',
-              letterSpacing: '0.12em',
-              color: 'rgba(255,255,255,0.7)',
-              cursor: 'pointer',
-              whiteSpace: 'nowrap',
-              transition: 'opacity 0.2s',
-              marginRight: 12,
-            }}
-            onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.opacity = '0.6'; }}
-            onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.opacity = '1'; }}
-          >
-            · close ·
-          </button>
-        )}
 
         {/* Logo — right corner */}
         <a

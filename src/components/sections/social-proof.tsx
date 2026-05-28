@@ -6,20 +6,37 @@ import WordReveal from '@/components/ui/word-reveal';
 
 const TESTIMONIALS = [
   {
-    quote:
-      "Manoj Infotec built me a gaming rig within my ₹80k budget and it runs every game at ultra settings. The attention to detail in cable management alone is worth it.",
+    quote: "Supportive throughout the process. Most of my old PC parts burnt out, and Manoj Infotech helped me with a new build at an effective price and ensured all my queries were answered before I confirmed the new PC build.",
+    name: 'Johnson G',
+    detail: 'Custom PC Build',
+  },
+  {
+    quote: "Built my PC here. Good understanding of my need and good recommendation for that. Genuine spares and excellent service. Best place and affordable price.",
+    name: 'Prince Derasariya',
+    detail: 'Custom PC Build',
+  },
+  {
+    quote: "Awesome work, I got the PC in one day. Best after-sales support & best price too.",
+    name: 'Siva Soorya',
+    detail: 'PC Build Customer',
+  },
+  {
+    quote: "We have been dealing with Manoj Infotech for more than 2 years now. Their price is always affordable compared with other suppliers in the market. On-time response, timely delivery and kind support are their notable marks.",
+    name: 'ARPL EDP',
+    detail: 'Business Client',
+  },
+  {
+    quote: "Manoj Infotec built me a gaming rig within my ₹80k budget and it runs every game at ultra settings. The attention to detail in cable management alone is worth it.",
     name: 'Rohan M.',
     detail: 'Gaming Rig Customer',
   },
   {
-    quote:
-      "I needed a Blender + DaVinci workstation urgently. They delivered a fully tested build in 3 days. Renders that took 2 hours now finish in 20 minutes.",
+    quote: "I needed a Blender + DaVinci workstation urgently. They delivered a fully tested build in 3 days. Renders that took 2 hours now finish in 20 minutes.",
     name: 'Priya K.',
     detail: 'Workstation Customer',
   },
   {
-    quote:
-      "Our office needed 5 budget builds fast. Manoj Infotec handled everything — procurement, assembly, OS install. Couldn't ask for better service.",
+    quote: "Our office needed 5 budget builds fast. Manoj Infotec handled everything — procurement, assembly, OS install. Couldn't ask for better service.",
     name: 'Sameer D.',
     detail: 'Business Client',
   },
@@ -105,11 +122,18 @@ export default function SocialProof() {
           <WordReveal text="real results." isInView={isInView} baseDelay={200} stagger={60} style={{ color: '#DC2626', display: 'inline', marginLeft: '0.25em' }} />
         </h2>
 
-        {/* Desktop Cards */}
-        <div className="testimonials-desktop grid grid-cols-1 md:grid-cols-3 gap-5">
-          {TESTIMONIALS.map((t, i) => (
-            <TestimonialCard key={t.name} t={t} i={i} isInView={isInView} />
-          ))}
+        {/* Desktop infinite scroll */}
+        <div className="testimonials-desktop" style={{ overflow: 'hidden', margin: '0 -24px' }}>
+          <div
+            className="testimonials-marquee"
+            style={{ display: 'flex', gap: 20, width: 'max-content' }}
+          >
+            {[...TESTIMONIALS, ...TESTIMONIALS].map((t, i) => (
+              <div key={i} style={{ width: 380, flexShrink: 0 }}>
+                <TestimonialCard t={t} i={0} isInView={isInView} />
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Mobile infinite scroll */}

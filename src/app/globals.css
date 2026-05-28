@@ -359,15 +359,12 @@ h2 {
   to { transform: translateX(-50%); }
 }
 .testimonials-marquee {
-  animation: testimonials-scroll 18s linear infinite;
-}
-.testimonials-marquee:hover {
-  animation-play-state: paused;
+  animation: testimonials-scroll 40s linear infinite;
 }
 .testimonials-marquee.paused {
   animation-play-state: paused;
 }
-.testimonials-desktop { display: grid; }
+.testimonials-desktop { display: block; }
 .testimonials-mobile { display: none; }
 
 @media (max-width: 767px) {

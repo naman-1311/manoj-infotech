@@ -397,6 +397,7 @@ export default function MenuOverlay({ isOpen, onClose, navLinks = DEFAULT_NAV_LI
           <img
             src="/icons/logo_bg.png"
             alt="Manoj Infotec"
+            className="menu-overlay-logo"
             style={{
               height: 240,
               width: 'auto',

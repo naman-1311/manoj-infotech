@@ -364,6 +364,9 @@ h2 {
 .testimonials-marquee:hover {
   animation-play-state: paused;
 }
+.testimonials-marquee.paused {
+  animation-play-state: paused;
+}
 .testimonials-desktop { display: grid; }
 .testimonials-mobile { display: none; }
 

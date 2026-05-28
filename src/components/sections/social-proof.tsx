@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef } from 'react';
+import { useRef, useCallback } from 'react';
 import { useInView } from '@/hooks/useInView';
 import WordReveal from '@/components/ui/word-reveal';
 
@@ -57,7 +57,16 @@ function TestimonialCard({ t, i, isInView }: { t: typeof TESTIMONIALS[0]; i: num
 
 export default function SocialProof() {
   const ref = useRef<HTMLElement>(null);
+  const marqueeRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, 0.05, '0px 0px -50% 0px');
+
+  const handleTouchStart = useCallback(() => {
+    marqueeRef.current?.classList.add('paused');
+  }, []);
+
+  const handleTouchEnd = useCallback(() => {
+    marqueeRef.current?.classList.remove('paused');
+  }, []);
 
   return (
     <section
@@ -105,7 +114,14 @@ export default function SocialProof() {
 
         {/* Mobile infinite scroll */}
         <div className="testimonials-mobile" style={{ overflow: 'hidden', margin: '0 -24px' }}>
-          <div className="testimonials-marquee" style={{ display: 'flex', gap: 16, width: 'max-content' }}>
+          <div
+            ref={marqueeRef}
+            className="testimonials-marquee"
+            style={{ display: 'flex', gap: 16, width: 'max-content' }}
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+            onTouchCancel={handleTouchEnd}
+          >
             {[...TESTIMONIALS, ...TESTIMONIALS].map((t, i) => (
               <div key={i} style={{ width: '85vw', flexShrink: 0 }}>
                 <TestimonialCard t={t} i={0} isInView={true} />

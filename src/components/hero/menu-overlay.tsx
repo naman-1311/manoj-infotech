@@ -393,7 +393,7 @@ export default function MenuOverlay({ isOpen, onClose, navLinks = DEFAULT_NAV_LI
         }}
       >
         {/* Logo at top of menu card */}
-        <div style={{ position: 'relative', zIndex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '5px 0 8px' }}>
+        <div style={{ position: 'relative', zIndex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '0px 0 4px' }}>
           <img
             src="/icons/logo_bg.png"
             alt="Manoj Infotec"
